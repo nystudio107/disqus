@@ -18,7 +18,7 @@ class Disqus_UtilsService extends BaseApplicationComponent
 		if ($currentUser)
 		{
 			$data['id'] = $currentUser->id;
-			$data['username'] = $currentUser->profileUserName;
+			$data['username'] = $currentUser->username;
 			$data['email'] = $currentUser->email;
 		}
 		
@@ -97,7 +97,7 @@ ENDBLOCK;
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
 
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
