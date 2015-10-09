@@ -12,7 +12,7 @@ A simple plugin for integrating [Disqus](https://disqus.com) into [Craft CMS](ht
 
 First, make sure you have [set up a Disqus account](https://disqus.com/websites/).
 
-Next in the Craft Admin CP, go to Settings->Plugins->Disqus and enter the Short Name for your Disqus site.  This is the only requred setting for the Disqus plugin.
+Next in the Craft Admin CP, go to Settings->Plugins->Disqus and enter the Short Name for your Disqus site.  This is the only required setting for the Disqus plugin.
 
 #### Single Sign On (SSO) ####
 
