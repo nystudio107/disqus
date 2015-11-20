@@ -24,7 +24,9 @@ Then copy and paste the API Key and API Secret into the Disqus plugin settings, 
 
 #### Custom Login/Logout URLs ####
 
-The Diqus plugin will also take care of the custom login/logout URLs, should you wish to use them.  Please see [Adding your own SSO login and logout links](Please see Adding your own SSO login and logout links for details) for details
+The Diqus plugin will also take care of the custom login/logout URLs, should you wish to use them.  Please see [Adding your own SSO login and logout links](https://help.disqus.com/customer/portal/articles/236206-integrating-single-sign-on#sso-login) for details.
+
+You only need this is you want to have a custom login button displayed in the Disqus UI itself.
 
 ###Using the Disqus plugin in your templates ###
 
