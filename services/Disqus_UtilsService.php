@@ -20,6 +20,7 @@ class Disqus_UtilsService extends BaseApplicationComponent
 			$data['id'] = $currentUser->id;
 			$data['username'] = $currentUser->username;
 			$data['email'] = $currentUser->email;
+			$data['avatar'] = $currentUser->getPhotoUrl();
 		}
 		
 		$message = base64_encode(json_encode($data));

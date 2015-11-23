@@ -88,6 +88,7 @@ If you have "Use Custom Login/Logout URLs" turned on, it will also generate the 
 
 * Added support for Craft 2.5 new plugin features
 * Added a controller to handle the custom logout URL
+* Fixed an issue where custom avatars no longer appeared
 
 ### 1.0.0 -- 2015.05.09
 
