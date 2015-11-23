@@ -26,7 +26,11 @@ Then copy and paste the API Key and API Secret into the Disqus plugin settings, 
 
 The Diqus plugin will also take care of the custom login/logout URLs, should you wish to use them.  Please see [Adding your own SSO login and logout links](https://help.disqus.com/customer/portal/articles/236206-integrating-single-sign-on#sso-login) for details.
 
-You only need this is you want to have a custom login button displayed in the Disqus UI itself.
+You only need this is you want to have a custom login button displayed in the Disqus UI itself.  
+
+`url` should be the address of your login page. The page will be opened in a new window and it must close itself after authentication is done. That is how we know when it is done and reload the page.
+
+`logout` should be set to `http://example.com/actions/disqus/logoutRedirect` to hit the Disqus controller that handles the logout and redirect.
 
 ###Using the Disqus plugin in your templates ###
 
@@ -83,6 +87,7 @@ If you have "Use Custom Login/Logout URLs" turned on, it will also generate the 
 ### 1.0.1 -- 2015.11.23
 
 * Added support for Craft 2.5 new plugin features
+* Added a controller to handle the custom logout URL
 
 ### 1.0.0 -- 2015.05.09
 
