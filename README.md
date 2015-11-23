@@ -80,6 +80,10 @@ If you have "Use Custom Login/Logout URLs" turned on, it will also generate the 
 
 ## Changelog
 
-### 1.0.0 -- 5/9/2015
+### 1.0.1 -- 2015.11.23
+
+* Added support for Craft 2.5 new plugin features
+
+### 1.0.0 -- 2015.05.09
 
 * Initial release

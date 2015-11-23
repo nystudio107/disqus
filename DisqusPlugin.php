@@ -8,7 +8,27 @@ class DisqusPlugin extends BasePlugin
         return Craft::t('Disqus');
     }
 
-    function getVersion()
+    public function getDescription()
+    {
+        return 'A simple plugin for integrating Disqus into Craft CMS websites, including Single Sign On (SSO) and custom login/logout URLs.';
+    }
+    
+    public function getDocumentationUrl()
+    {
+        return 'https://github.com/khalwat/disqus/blob/master/README.md';
+    }
+    
+    public function getReleaseFeedUrl()
+    {
+        return 'https://github.com/khalwat/disqus/blob/master/releases.json';
+    }
+    
+	public function getVersion()
+	{
+	    return '1.0.1';
+	}
+
+    public function getSchemaVersion()
     {
         return '1.0.0';
     }
