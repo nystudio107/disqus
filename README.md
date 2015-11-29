@@ -1,4 +1,4 @@
-### Disqus plugin for Craft CMS
+# Disqus plugin for Craft CMS
 
 A simple plugin for integrating [Disqus](https://disqus.com) into [Craft CMS](http://buildwithcraft.com) websites, including Single Sign On (SSO) and custom login/logout URLs.
 
@@ -8,13 +8,13 @@ A simple plugin for integrating [Disqus](https://disqus.com) into [Craft CMS](ht
 2.  -OR- do a `git clone https://github.com/khalwat/disqus.git` directly into your `craft/plugins` folder.  You can then update it with `git pull`
 3. Install plugin in the Craft Control Panel under Settings > Plugins
 
-###Configuring Disqus###
+## Configuring Disqus
 
 First, make sure you have [set up a Disqus account](https://disqus.com/websites/).
 
 Next in the Craft Admin CP, go to Settings->Plugins->Disqus and enter the Short Name for your Disqus site.  This is the only required setting for the Disqus plugin.
 
-#### Single Sign On (SSO) ####
+### Single Sign On (SSO)
 
 The real usefulness of the Disqus plugin is that it takes care of the Single Sign On (SSO) integration with your Craft site.
 
@@ -22,7 +22,7 @@ Before you can use this, you'll need to set up the Disqus SSO API as described o
 
 Then copy and paste the API Key and API Secret into the Disqus plugin settings, and turn on the "User Single Sign On" lightswitch.
 
-#### Custom Login/Logout URLs ####
+### Custom Login/Logout URLs
 
 The Diqus plugin will also take care of the custom login/logout URLs, should you wish to use them.  Please see [Adding your own SSO login and logout links](https://help.disqus.com/customer/portal/articles/236206-integrating-single-sign-on#sso-login) for details.
 
@@ -32,7 +32,7 @@ You only need this is you want to have a custom login button displayed in the Di
 
 `logout` should be set to `http://example.com/actions/disqus/logoutRedirect` to hit the Disqus controller that handles the logout and redirect.
 
-###Using the Disqus plugin in your templates ###
+## Using the Disqus plugin in your templates
 
 Both of these methods accomplish the same thing:
 
