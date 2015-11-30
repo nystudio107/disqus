@@ -4,7 +4,7 @@ A simple plugin for integrating [Disqus](https://disqus.com) into [Craft CMS](ht
 
 **Installation**
 
-1. Unzip file and place `disqus` directory into your `craft/plugins` directory
+1. Download & unzip the file and place the `disqus` directory into your `craft/plugins` directory
 2.  -OR- do a `git clone https://github.com/khalwat/disqus.git` directly into your `craft/plugins` folder.  You can then update it with `git pull`
 3. Install plugin in the Craft Control Panel under Settings > Plugins
 
