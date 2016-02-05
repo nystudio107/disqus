@@ -5,40 +5,43 @@ class Disqus_UtilsService extends BaseApplicationComponent
 {
 
 /* --------------------------------------------------------------------------------
-	Output the Disqus SSO Tag
+    Output the Disqus SSO Tag
 -------------------------------------------------------------------------------- */
 
     public function outputSSOTag($userId = 0)
     {
-		$result = "";
-		$settings = craft()->plugins->getPlugin('disqus')->getSettings();
-		$data = array();
-		
-		$currentUser = craft()->userSession->user;
-		if ($currentUser)
-		{
-			$data['id'] = $currentUser->id;
-			$data['username'] = $currentUser->username;
-			$data['email'] = $currentUser->email;
-			$data['avatar'] = $currentUser->getPhotoUrl();
-		}
-		
-		$message = base64_encode(json_encode($data));
-		$timestamp = time();
-		$hmac = dsq_hmacsha1($message . ' ' . $timestamp, $settings['disqusSecretKey']);
-		
-		if ($settings['customLogin'])
-		{
-			$disqusPublicKey = $settings['disqusPublicKey'];
-			$loginName = $settings['loginName'];
-			$loginButton = $settings['loginButton'];
-			$loginIcon = $settings['loginIcon'];
-			$loginUrl = $settings['loginUrl'];
-			$loginLogoutUrl = $settings['loginLogoutUrl'];
-			$loginWidth = $settings['loginWidth'];
-			$loginHeight = $settings['loginHeight'];
-			
-			echo <<<ENDBLOCK
+        $result = "";
+        $settings = craft()->plugins->getPlugin('disqus')->getSettings();
+        $data = array();
+
+        $currentUser = craft()->userSession->user;
+        if ($currentUser)
+        {
+            $data['id'] = $currentUser->id;
+            if (craft()->config->get('useEmailAsUsername'))
+                $data['username'] = $currentUser->getFullName();
+            else
+                $data['username'] = $currentUser->username;
+            $data['email'] = $currentUser->email;
+            $data['avatar'] = $currentUser->getPhotoUrl();
+        }
+
+        $message = base64_encode(json_encode($data));
+        $timestamp = time();
+        $hmac = dsq_hmacsha1($message . ' ' . $timestamp, $settings['disqusSecretKey']);
+
+        if ($settings['customLogin'])
+        {
+            $disqusPublicKey = $settings['disqusPublicKey'];
+            $loginName = $settings['loginName'];
+            $loginButton = $settings['loginButton'];
+            $loginIcon = $settings['loginIcon'];
+            $loginUrl = $settings['loginUrl'];
+            $loginLogoutUrl = $settings['loginLogoutUrl'];
+            $loginWidth = $settings['loginWidth'];
+            $loginHeight = $settings['loginHeight'];
+
+            echo <<<ENDBLOCK
 <script type="text/javascript">
 var disqus_config = function() {
     this.page.remote_auth_s3 = "$message $hmac $timestamp";
@@ -56,11 +59,11 @@ var disqus_config = function() {
 };
 </script>
 ENDBLOCK;
-		}
-		else
-		{
-			$disqusPublicKey = $settings['disqusPublicKey'];
-			echo <<<ENDBLOCK
+        }
+        else
+        {
+            $disqusPublicKey = $settings['disqusPublicKey'];
+            echo <<<ENDBLOCK
 <script type="text/javascript">
 var disqus_config = function() {
     this.page.remote_auth_s3 = "$message $hmac $timestamp";
@@ -68,24 +71,24 @@ var disqus_config = function() {
 };
 </script>
 ENDBLOCK;
-		}
-		return $result;
+        }
+        return $result;
     } /* -- outputSSOTag */
 
 /* --------------------------------------------------------------------------------
-	Output the Disqus Tag
+    Output the Disqus Tag
 -------------------------------------------------------------------------------- */
 
     public function outputEmbedTag($disqusIdentifier = "", $disqusTitle = "", $disqusUrl = "", $disqusCategoryId = "")
     {
-		$result = "";
-		$settings = craft()->plugins->getPlugin('disqus')->getSettings();
-		
-		if ($settings['useSSO'])
-			$this->outputSSOTag();
-		
-		$disqusShortname = $settings['disqusShortname'];
-		echo <<<ENDBLOCK
+        $result = "";
+        $settings = craft()->plugins->getPlugin('disqus')->getSettings();
+
+        if ($settings['useSSO'])
+            $this->outputSSOTag();
+
+        $disqusShortname = $settings['disqusShortname'];
+        echo <<<ENDBLOCK
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -94,7 +97,7 @@ ENDBLOCK;
     var disqus_title = '$disqusTitle';
     var disqus_url = '$disqusUrl';
     var disqus_category_id = '$disqusCategoryId';
-    
+
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -108,32 +111,32 @@ ENDBLOCK;
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 ENDBLOCK;
 
-		return $result;
+        return $result;
     } /* -- outputEmbedTag */
 
 } /* -- Disqus_UtilsService */
 
 /* --------------------------------------------------------------------------------
-	HMAC->SHA1
-	From: https://github.com/disqus/DISQUS-API-Recipes/blob/master/sso/php/sso.php
+    HMAC->SHA1
+    From: https://github.com/disqus/DISQUS-API-Recipes/blob/master/sso/php/sso.php
 -------------------------------------------------------------------------------- */
 
-	function dsq_hmacsha1($data, $key) {
-	    $blocksize=64;
-	    $hashfunc='sha1';
-	    if (strlen($key)>$blocksize)
-	        $key=pack('H*', $hashfunc($key));
-	    $key=str_pad($key,$blocksize,chr(0x00));
-	    $ipad=str_repeat(chr(0x36),$blocksize);
-	    $opad=str_repeat(chr(0x5c),$blocksize);
-	    $hmac = pack(
-	                'H*',$hashfunc(
-	                    ($key^$opad).pack(
-	                        'H*',$hashfunc(
-	                            ($key^$ipad).$data
-	                        )
-	                    )
-	                )
-	            );
-	    return bin2hex($hmac);
-	} /* -- dsq_hmacsha1 */
+    function dsq_hmacsha1($data, $key) {
+        $blocksize=64;
+        $hashfunc='sha1';
+        if (strlen($key)>$blocksize)
+            $key=pack('H*', $hashfunc($key));
+        $key=str_pad($key,$blocksize,chr(0x00));
+        $ipad=str_repeat(chr(0x36),$blocksize);
+        $opad=str_repeat(chr(0x5c),$blocksize);
+        $hmac = pack(
+                    'H*',$hashfunc(
+                        ($key^$opad).pack(
+                            'H*',$hashfunc(
+                                ($key^$ipad).$data
+                            )
+                        )
+                    )
+                );
+        return bin2hex($hmac);
+    } /* -- dsq_hmacsha1 */
