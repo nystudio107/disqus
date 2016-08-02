@@ -90,8 +90,7 @@ ENDBLOCK;
 
         if ($settings['useSSO'])
             $this->outputSSOTag();
-
-        $disqusShortname = $settings['disqusShortname'];
+        $disqusShortname = (craft()->config->get('disqusShortname', 'disqus')) ?: $settings['disqusShortname'];
         echo <<<ENDBLOCK
 <div id="disqus_thread"></div>
 <script type="text/javascript">
