@@ -43,7 +43,9 @@ class Disqus_UtilsService extends BaseApplicationComponent
 
             echo <<<ENDBLOCK
 <script type="text/javascript">
+var _old_disqus_config = disqus_config ;
 var disqus_config = function() {
+    _old_disqus_config.apply(this);
     this.page.remote_auth_s3 = "$message $hmac $timestamp";
     this.page.api_key = "$disqusPublicKey";
 
@@ -65,7 +67,9 @@ ENDBLOCK;
             $disqusPublicKey = $settings['disqusPublicKey'];
             echo <<<ENDBLOCK
 <script type="text/javascript">
+var _old_disqus_config = disqus_config ;
 var disqus_config = function() {
+    _old_disqus_config.apply(this);
     this.page.remote_auth_s3 = "$message $hmac $timestamp";
     this.page.api_key = "$disqusPublicKey";
 };
@@ -86,8 +90,7 @@ ENDBLOCK;
 
         if ($settings['useSSO'])
             $this->outputSSOTag();
-
-        $disqusShortname = $settings['disqusShortname'];
+        $disqusShortname = (craft()->config->get('disqusShortname', 'disqus')) ?: $settings['disqusShortname'];
         echo <<<ENDBLOCK
 <div id="disqus_thread"></div>
 <script type="text/javascript">

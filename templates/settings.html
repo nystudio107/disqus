@@ -1,8 +1,21 @@
 {% import "_includes/forms" as forms %}
 
-{{ forms.textField({
-'label': 'Disqus Site Short Name', 'instructions': 'Enter your Disqus Site Short Name here.', 'id': 'disqusShortname', 'name': 'disqusShortname', 'value': settings['disqusShortname']}) }}
+{% macro configWarning(setting) -%}
+  {{ "This is being overridden by the {setting} config setting in your disqus.php config file."|t({
+    setting: setting
+  })|raw }}
+{%- endmacro %}
+{% from _self import configWarning %}
 
+{{ forms.textField({
+  'label':        'Disqus Site Short Name', 
+  'instructions': 'Enter your Disqus Site Short Name here.',
+  'id':           'disqusShortname',
+  'name':         'disqusShortname',
+  'value':        settings['disqusShortname'],
+  'warning':      (craft.config.get('disqusShortname', 'disqus') is not sameas(null)) ? configWarning('disqusShortname'),
+
+}) }}
 <hr />
 
 <p>Please see <a href="https://help.disqus.com/customer/portal/articles/236206-integrating-single-sign-on" target="_blank">Integrating Single Sign-On</a> for details on how to set up your Disqus account to use SSO</p>
