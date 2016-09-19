@@ -42,7 +42,7 @@ class Disqus_UtilsService extends BaseApplicationComponent
             $loginHeight = $settings['loginHeight'];
 
             echo <<<ENDBLOCK
-<script type="text/javascript">
+<script data-cfasync="false" type="text/javascript">
 var disqus_config = function() {
     this.page.remote_auth_s3 = "$message $hmac $timestamp";
     this.page.api_key = "$disqusPublicKey";
@@ -64,7 +64,7 @@ ENDBLOCK;
         {
             $disqusPublicKey = $settings['disqusPublicKey'];
             echo <<<ENDBLOCK
-<script type="text/javascript">
+<script data-cfasync="false" type="text/javascript">
 var disqus_config = function() {
     this.page.remote_auth_s3 = "$message $hmac $timestamp";
     this.page.api_key = "$disqusPublicKey";
@@ -83,14 +83,17 @@ ENDBLOCK;
     {
         $result = "";
         $settings = craft()->plugins->getPlugin('disqus')->getSettings();
-
+        $disqusIdentifier = json_encode($disqusIdentifier);
+        $disqusTitle = json_encode($disqusTitle);
+        $disqusUrl = json_encode($disqusUrl);
+        $disqusCategoryId = json_encode($disqusCategoryId);
         if ($settings['useSSO'])
             $this->outputSSOTag();
 
         $disqusShortname = $settings['disqusShortname'];
         echo <<<ENDBLOCK
 <div id="disqus_thread"></div>
-<script type="text/javascript">
+<script data-cfasync="false" type="text/javascript">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
     var disqus_shortname = '$disqusShortname';
     var disqus_identifier = '$disqusIdentifier';

@@ -4,7 +4,7 @@ namespace Craft;
 class DisqusController extends BaseController
 {
 	protected $allowAnonymous = array('logoutRedirect');
-	
+
     public function actionLogoutRedirect()
     {
         craft()->userSession->logout(false);

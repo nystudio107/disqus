@@ -85,6 +85,12 @@ If you have "Use Custom Login/Logout URLs" turned on, it will also generate the 
 
 ## Changelog
 
+### 1.0.2 -- 2016.09.19
+
+* [Improved] We now JSON-encode the data in the Disqus embed
+* [Improved] Added data-cfasync=false to the script tags for CloudFlare RocketScript support
+* [Improved] Updated README.md
+
 ### 1.0.1 -- 2015.11.23
 
 * Added support for Craft 2.5 new plugin features
