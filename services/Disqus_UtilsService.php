@@ -83,7 +83,7 @@ ENDBLOCK;
     {
         $result = "";
         $settings = craft()->plugins->getPlugin('disqus')->getSettings();
-        $disqusIdentifier = json_encode($disqusIdentifier);
+        $disqusIdentifier = json_encode((int)$disqusIdentifier);
         $disqusTitle = json_encode($disqusTitle);
         $disqusCategoryId = json_encode($disqusCategoryId);
         if ($settings['useSSO'])
