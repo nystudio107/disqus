@@ -1,12 +1,22 @@
 [
     {
+        "version": "1.0.3",
+        "downloadUrl": "https://github.com/khalwat/disqus/archive/master.zip",
+        "date": "2016-10-03T11:00:00-05:00",
+        "notes": [
+            "[Fixed] We now JSON-encode the data in the Disqus embed",
+            "[Fixed] Added data-cfasync=false to the script tags for CloudFlare RocketScript support",
+            "[Improved] Updated README.md"
+        ]
+    },
+    {
         "version": "1.0.2",
         "downloadUrl": "https://github.com/khalwat/disqus/archive/master.zip",
         "date": "2016-09-19T11:00:00-05:00",
         "notes": [
             "[Improved] We now JSON-encode the data in the Disqus embed",
             "[Improved] Added data-cfasync=false to the script tags for CloudFlare RocketScript support",
-            "[Fixed] Fixed an issue where custom avatars no longer appeared"
+            "[Improved] Updated README.md"
         ]
     },
     {
