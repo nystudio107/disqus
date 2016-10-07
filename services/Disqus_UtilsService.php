@@ -79,13 +79,16 @@ ENDBLOCK;
     Output the Disqus Tag
 -------------------------------------------------------------------------------- */
 
-    public function outputEmbedTag($disqusIdentifier = "", $disqusTitle = "", $disqusUrl = "", $disqusCategoryId = "")
+    public function outputEmbedTag($disqusIdentifier = '', $disqusTitle = '', $disqusUrl = '', $disqusCategoryId = '')
     {
-        $result = "";
+        // Set all parameters to single quote so that double quotes don't get wrapped in single quotes
+        // json_encode does not need to happen for the javascript variables, they can just be added
+        // disqusIdentifier still needs to be parsed as a integer
+
+        $result = '';
         $settings = craft()->plugins->getPlugin('disqus')->getSettings();
-        $disqusIdentifier = json_encode((int)$disqusIdentifier);
-        $disqusTitle = json_encode($disqusTitle);
-        $disqusCategoryId = json_encode($disqusCategoryId);
+        $disqusIdentifier = (int)$disqusIdentifier;
+        
         if ($settings['useSSO'])
             $this->outputSSOTag();
 
