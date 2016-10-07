@@ -17,5 +17,8 @@ class DisqusVariable
     {
 		return craft()->disqus_utils->outputEmbedTag($disqusIdentifier, $disqusTitle, $disqusUrl, $disqusCategoryId);
     } /* -- disqusEmbed */
-
+	
+    function getSettings() {
+        return craft()->plugins->getPlugin('disqus')->getSettings();
+    }
 }
