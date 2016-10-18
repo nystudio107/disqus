@@ -85,6 +85,11 @@ If you have "Use Custom Login/Logout URLs" turned on, it will also generate the 
 
 ## Changelog
 
+### 1.0.4 -- 2016.10.17
+
+* [Fixed] Fixed some overzealous json_encode() calls that caused comments to not show up correctly
+* [Improved] Updated README.md
+
 ### 1.0.3 -- 2016.10.03
 
 * [Fixed] Resolve broken $disqusIdentifier encoding when set as a string.

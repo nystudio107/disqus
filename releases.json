@@ -1,5 +1,14 @@
 [
     {
+        "version": "1.0.4",
+        "downloadUrl": "https://github.com/khalwat/disqus/archive/master.zip",
+        "date": "2016-10-17T11:00:00-05:00",
+        "notes": [
+            "[Fixed] Fixed some overzealous json_encode() calls that caused comments to not show up correctly",
+            "[Improved] Updated README.md"
+        ]
+    },
+    {
         "version": "1.0.3",
         "downloadUrl": "https://github.com/khalwat/disqus/archive/master.zip",
         "date": "2016-10-03T11:00:00-05:00",
