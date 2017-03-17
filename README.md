@@ -14,6 +14,8 @@ A simple plugin for integrating [Disqus](https://disqus.com) into [Craft CMS](ht
 First, make sure you have [set up a Disqus account](https://disqus.com/websites/).
 
 Next in the Craft Admin CP, go to Settings->Plugins->Disqus and enter the Short Name for your Disqus site.  This is the only required setting for the Disqus plugin.
+All settings are also configurable via [config file](https://craftcms.com/docs/plugins/plugin-settings#config-file) located in your project `craft/config/disqus.php`.
+Available settings and defaults are in `config.php`.
 
 ### Single Sign On (SSO)
 
@@ -39,7 +41,7 @@ Both of these methods accomplish the same thing:
 
 	{# Output the Disqus embed code using the 'disqusEmbed' function #}
     {{ disqusEmbed( DISQUS_IDENTIFIER, DISQUS_TITLE, DISQUS_URL, DISQUS_CATEGORY_ID) }}
-    
+
 	{# Output the Disqus embed code using the 'disqusEmbed' filter #}
     {{ DISQUS_IDENTIFIER | disqusEmbed(DISQUS_TITLE, DISQUS_URL, DISQUS_CATEGORY_ID) }}
 
@@ -55,16 +57,16 @@ In its most basic case, this will result in output to your Craft template that l
 	    var disqus_title = 'DISQUS_TITLE';
 	    var disqus_url = 'DISQUS_URL';
 	    var disqus_category_id = 'DISQUS_CATEGORY_ID';
-	    
+
 	    /* * * DON'T EDIT BELOW THIS LINE * * */
 	    (function() {
 	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 	        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-	
+
 	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 	    })();
 	</script>
-	
+
 	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 	<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
@@ -78,7 +80,7 @@ If you have turned on "User Single Sign On" it will also output something like t
 	    this.page.api_key = "GTX1r1JBbiJah3hzZkBO06hI71VxjyWxgdurckHYBWLiELkHDidVmnDkBW0XeROe";
 	};
 	</script>
-	
+
 Which, assuming you've set up the Disqus SSO properly, will allow your Craft users to be logged into Disqus using your Craft website credentials.
 
 If you have "Use Custom Login/Logout URLs" turned on, it will also generate the `this.sso` settings for you, [as described here](https://help.disqus.com/customer/portal/articles/236206-integrating-single-sign-on#sso-login)
