@@ -58,19 +58,35 @@ class DisqusPlugin extends BasePlugin
     protected function defineSettings()
     {
         return array(
-            'disqusShortname' => array(AttributeType::String, 'label' => 'Disqus Site Short Name', 'default' => ''),
-            'useSSO' => array(AttributeType::Bool, 'label' => 'Use Single Sign On', 'default' => false),
-            'disqusPublicKey' => array(AttributeType::String, 'label' => 'Disqus Public Key', 'default' => ''),
-            'disqusSecretKey' => array(AttributeType::String, 'label' => 'Disqus Secret Key', 'default' => ''),
-            'customLogin' => array(AttributeType::Bool, 'label' => 'Use Custom Login/Logout URLs', 'default' => false),
-            'loginName' => array(AttributeType::String, 'label' => 'name', 'default' => ''),
-            'loginButton' => array(AttributeType::String, 'label' => 'button', 'default' => ''),
-            'loginIcon' => array(AttributeType::String, 'label' => 'icon', 'default' => ''),
-            'loginUrl' => array(AttributeType::String, 'label' => 'url', 'default' => ''),
-            'loginLogoutUrl' => array(AttributeType::String, 'label' => 'logout', 'default' => ''),
-            'loginWidth' => array(AttributeType::String, 'label' => 'width', 'default' => '800'),
-            'loginHeight' => array(AttributeType::String, 'label' => 'height', 'default' => '400'),
+            'disqusShortname' => array(AttributeType::String, 'label' => 'Disqus Site Short Name', 'default' => craft()->config->get('disqusShortname', 'disqus')),
+            'useSSO' => array(AttributeType::Bool, 'label' => 'Use Single Sign On', 'default' => craft()->config->get('useSSO', 'disqus')),
+            'disqusPublicKey' => array(AttributeType::String, 'label' => 'Disqus Public Key', 'default' => craft()->config->get('disqusPublicKey', 'disqus')),
+            'disqusSecretKey' => array(AttributeType::String, 'label' => 'Disqus Secret Key', 'default' => craft()->config->get('disqusSecretKey', 'disqus')),
+            'customLogin' => array(AttributeType::Bool, 'label' => 'Use Custom Login/Logout URLs', 'default' => craft()->config->get('customLogin', 'disqus')),
+            'loginName' => array(AttributeType::String, 'label' => 'name', 'default' => craft()->config->get('loginName', 'disqus')),
+            'loginButton' => array(AttributeType::String, 'label' => 'button', 'default' => craft()->config->get('loginButton', 'disqus')),
+            'loginIcon' => array(AttributeType::String, 'label' => 'icon', 'default' => craft()->config->get('loginIcon', 'disqus')),
+            'loginUrl' => array(AttributeType::String, 'label' => 'url', 'default' => craft()->config->get('loginUrl', 'disqus')),
+            'loginLogoutUrl' => array(AttributeType::String, 'label' => 'logout', 'default' => craft()->config->get('loginLogoutUrl', 'disqus')),
+            'loginWidth' => array(AttributeType::String, 'label' => 'width', 'default' => craft()->config->get('loginWidth', 'disqus')),
+            'loginHeight' => array(AttributeType::String, 'label' => 'height', 'default' => craft()->config->get('loginHeight', 'disqus')),
         );
+    }
+
+    public function getSettings()
+    {
+        $settings = parent::getSettings();
+        $base = $this->defineSettings();
+
+        foreach ($base as $key => $row) {
+            $override = craft()->config->get($key, 'disqus');
+
+            if (!is_null($override)) {
+                $settings->$key = $override;
+            }
+        }
+
+        return $settings;
     }
 
     public function getSettingsHtml()
