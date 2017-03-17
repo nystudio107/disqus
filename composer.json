@@ -1,0 +1,8 @@
+{
+    "name": "nystudio107/craft-disqus",
+    "description": "A simple plugin for integrating Disqus into Craft CMS websites, including Single Sign On (SSO) and custom login/logout URLs.",
+    "type": "craft-plugin",
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}
