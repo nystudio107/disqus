@@ -6,6 +6,7 @@
 * Broke out the changelog into `CHANGELOG.md`
 
 ### Changed
+* Separated the various tags out into Twig templates
 * Cleaned up & refactored the templates & code
 
 ### 1.0.3 - 2016.10.03

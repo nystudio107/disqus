@@ -1,11 +1,21 @@
 {% import "_includes/forms" as forms %}
 
+{% macro configWarning(setting) -%}
+    {% if (craft.config.get(setting, 'disqus')) |length %}
+        {{ "This is being overridden by the {setting} config setting in your disqus.php config file." |t({
+            setting: setting
+        }) |raw }}
+    {% endif %}
+{%- endmacro %}
+{% from _self import configWarning %}
+
 {{ forms.textField({
     'label': 'Disqus Site Short Name',
     'instructions': 'Enter your Disqus Site Short Name here.',
     'id': 'disqusShortname',
     'name': 'disqusShortname',
-    'value': settings['disqusShortname']
+    'value': settings['disqusShortname'],
+    'warning': configWarning('disqusShortname')
 }) }}
 
 <hr />

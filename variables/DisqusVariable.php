@@ -4,18 +4,33 @@ namespace Craft;
 class DisqusVariable
 {
 
-/* --------------------------------------------------------------------------------
-	Variables
--------------------------------------------------------------------------------- */
-
-    function disqusSSO($userId = 0)
+    /**
+     * @return mixed
+     */
+    public function disqusSSO()
     {
-		return craft()->disqus_utils->outputSSOTag($userId);
-    } /* -- disqusSSO */
+        return craft()->disqus->outputSSOTag();
+    }
 
-    function disqusEmbed($disqusIdentifier = "", $disqusTitle = "", $disqusUrl = "", $disqusCategoryId = "")
-    {
-		return craft()->disqus_utils->outputEmbedTag($disqusIdentifier, $disqusTitle, $disqusUrl, $disqusCategoryId);
-    } /* -- disqusEmbed */
-
+    /**
+     * @param string $disqusIdentifier
+     * @param string $disqusTitle
+     * @param string $disqusUrl
+     * @param string $disqusCategoryId
+     *
+     * @return mixed
+     */
+    public function disqusEmbed(
+        $disqusIdentifier = "",
+        $disqusTitle = "",
+        $disqusUrl = "",
+        $disqusCategoryId = ""
+    ) {
+        return craft()->disqus->outputEmbedTag(
+            $disqusIdentifier,
+            $disqusTitle,
+            $disqusUrl,
+            $disqusCategoryId
+        );
+    }
 }

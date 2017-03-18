@@ -1,0 +1,22 @@
+<script data-cfasync="false" type="text/javascript">
+    if (typeof disqus_config != 'undefined') {
+        var _old_disqus_config = disqus_config;
+    }
+    var disqus_config = function() {
+        if (typeof _old_disqus_config != 'undefined') {
+            _old_disqus_config.apply(this);
+        }
+        this.page.remote_auth_s3 = '{{ vars.message |escape('js') }} {{ vars.hmac |escape('js') }} {{ vars.timestamp |escape('js') }}';
+        this.page.api_key = '{{ vars.disqusPublicKey |escape('js') }}';
+
+        this.sso = {
+            name:   "$loginName",
+            button: "$loginButton",
+            icon:   "$loginIcon",
+            url:    "$loginUrl",
+            logout: "$loginLogoutUrl",
+            width:  "$loginWidth",
+            height: "$loginHeight"
+        };
+    };
+</script>
