@@ -10,7 +10,7 @@
  * make your changes there.
  */
 
-// Leave any value in the array blank to cause it to not override.
+// Leave any value in the array blank to cause it to not override the Admin CP settings
 return array(
     'disqusShortname' => '',
     'useSSO' => false,
