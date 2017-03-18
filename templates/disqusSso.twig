@@ -1,0 +1,12 @@
+<script data-cfasync="false" type="text/javascript">
+    if (typeof disqus_config !== 'undefined') {
+        var _old_disqus_config = disqus_config;
+    }
+    var disqus_config = function() {
+        if (typeof _old_disqus_config !== 'undefined') {
+            _old_disqus_config.apply(this);
+        }
+        this.page.remote_auth_s3 = '{{ message |escape('js') }} {{ hmac |escape('js') }} {{ timestamp |escape('js') }}';
+        this.page.api_key = '{{ disqusPublicKey |escape('js') }}';
+    };
+</script>

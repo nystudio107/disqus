@@ -1,0 +1,31 @@
+<div id="disqus_thread"></div>
+<script data-cfasync="false" type="text/javascript">
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    if (typeof disqus_config !== 'undefined') {
+        var _old_disqus_config = disqus_config;
+    }
+    var disqus_config = function() {
+        if (typeof _old_disqus_config !== 'undefined') {
+            _old_disqus_config.apply(this);
+        }
+        this.page.url = '{{ disqusUrl |escape('js') }}';
+        this.page.identifier = '{{ disqusIdentifier |escape('js') }}';
+        this.page.title = '{{ disqusTitle |escape('js') }}';
+        this.page.category_id = '{{ disqusCategoryId |escape('js') }}';
+        this.language = '{{ disqusLanguage |escape('js') }}';
+    };
+
+    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+        var d = document, s = d.createElement('script');
+
+        s.src = '//{{ disqusShortname |escape('js') }}.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
