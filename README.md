@@ -5,7 +5,7 @@ Integrate the [Disqus](https://disqus.com) commenting system into [Craft CMS](ht
 **Installation**
 
 1. Download & unzip the file and place the `disqus` directory into your `craft/plugins` directory
-2.  -OR- do a `git clone https://github.com/khalwat/disqus.git` directly into your `craft/plugins` folder.  You can then update it with `git pull`
+2.  -OR- do a `git clone https://github.com/nystudio107/disqus.git` directly into your `craft/plugins` folder.  You can then update it with `git pull`
 3.  -OR- install with Composer via `composer require nystudio107/disqus`
 4. Install plugin in the Craft Control Panel under Settings > Plugins
 5. The plugin folder should be named `disqus` for Craft to see it.  GitHub recently started appending `-master` (the branch name) to the name of the folder for zip file downloads.
