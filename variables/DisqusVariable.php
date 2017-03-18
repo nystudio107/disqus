@@ -17,6 +17,7 @@ class DisqusVariable
      * @param string $disqusTitle
      * @param string $disqusUrl
      * @param string $disqusCategoryId
+     * @param string $disqusLanguage
      *
      * @return mixed
      */
