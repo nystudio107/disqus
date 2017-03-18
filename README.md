@@ -85,26 +85,4 @@ Which, assuming you've set up the Disqus SSO properly, will allow your Craft use
 
 If you have "Use Custom Login/Logout URLs" turned on, it will also generate the `this.sso` settings for you, [as described here](https://help.disqus.com/customer/portal/articles/236206-integrating-single-sign-on#sso-login)
 
-## Changelog
-
-### 1.0.3 -- 2016.10.03
-
-* [Fixed] Resolve broken $disqusIdentifier encoding when set as a string.
-* [Fixed] Fixes Disqus from loading when encoding the URL
-* [Improved] Updated README.md
-
-### 1.0.2 -- 2016.09.19
-
-* [Improved] We now JSON-encode the data in the Disqus embed
-* [Improved] Added data-cfasync=false to the script tags for CloudFlare RocketScript support
-* [Improved] Updated README.md
-
-### 1.0.1 -- 2015.11.23
-
-* Added support for Craft 2.5 new plugin features
-* Added a controller to handle the custom logout URL
-* Fixed an issue where custom avatars no longer appeared
-
-### 1.0.0 -- 2015.05.09
-
-* Initial release
+Brought to you by [nystudio107](http://nystudio107.com)
