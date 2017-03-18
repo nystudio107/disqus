@@ -24,13 +24,15 @@ class DisqusVariable
         $disqusIdentifier = "",
         $disqusTitle = "",
         $disqusUrl = "",
-        $disqusCategoryId = ""
+        $disqusCategoryId = "",
+        $disqusLanguage = ""
     ) {
         return craft()->disqus->outputEmbedTag(
             $disqusIdentifier,
             $disqusTitle,
             $disqusUrl,
-            $disqusCategoryId
+            $disqusCategoryId,
+            $disqusLanguage
         );
     }
 }

@@ -12,16 +12,17 @@
         if (typeof _old_disqus_config !== 'undefined') {
             _old_disqus_config.apply(this);
         }
-        this.page.url = '{{ vars.disqusUrl |escape('js') }}';
-        this.page.identifier = '{{ vars.disqusIdentifier |escape('js') }}';
-        this.page.title = '{{ vars.disqusTitle |escape('js') }}';
-        this.page.category_id = '{{ vars.disqusCategoryId |escape('js') }}';
+        this.page.url = '{{ disqusUrl |escape('js') }}';
+        this.page.identifier = '{{ disqusIdentifier |escape('js') }}';
+        this.page.title = '{{ disqusTitle |escape('js') }}';
+        this.page.category_id = '{{ disqusCategoryId |escape('js') }}';
+        this.language = '{{ disqusLanguage |escape('js') }}';
     };
 
     (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
         var d = document, s = d.createElement('script');
 
-        s.src = '//{{ vars.disqusShortname |escape('js') }}.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        s.src = '//{{ disqusShortname |escape('js') }}.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
 
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);

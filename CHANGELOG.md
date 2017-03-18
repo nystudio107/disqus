@@ -3,6 +3,7 @@
 ## 1.1.0 - 2017.03.18
 ### Added
 * All settings can now be overridden via `config.php` in a multi-environment friendly way
+* Added multi-lingual support for both the Disqus embed and comments
 * Broke out the changelog into `CHANGELOG.md`
 
 ### Changed

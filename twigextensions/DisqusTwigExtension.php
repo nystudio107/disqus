@@ -41,7 +41,7 @@ class DisqusTwigExtension extends Twig_Extension
     /**
      * @return mixed
      */
-    protected function disqusSSO()
+    public function disqusSSO()
     {
         return craft()->disqus->outputSSOTag();
     }
@@ -54,17 +54,19 @@ class DisqusTwigExtension extends Twig_Extension
      *
      * @return mixed
      */
-    protected function disqusEmbed(
+    public function disqusEmbed(
         $disqusIdentifier = "",
         $disqusTitle = "",
         $disqusUrl = "",
-        $disqusCategoryId = ""
+        $disqusCategoryId = "",
+        $disqusLanguage = ""
     ) {
         return craft()->disqus->outputEmbedTag(
             $disqusIdentifier,
             $disqusTitle,
             $disqusUrl,
-            $disqusCategoryId
+            $disqusCategoryId,
+            $disqusLanguage
         );
     }
 }

@@ -17,7 +17,8 @@ class DisqusService extends BaseApplicationComponent
         $disqusIdentifier = "",
         $disqusTitle = "",
         $disqusUrl = "",
-        $disqusCategoryId = ""
+        $disqusCategoryId = "",
+        $disqusLanguage = ""
     ) {
         $settings = craft()->plugins->getPlugin('disqus')->getSettings();
         $disqusShortname = $settings['disqusShortname'];
@@ -32,6 +33,7 @@ class DisqusService extends BaseApplicationComponent
             'disqusTitle' => $disqusTitle,
             'disqusUrl' => $disqusUrl,
             'disqusCategoryId' => $disqusCategoryId,
+            'disqusLanguage' => $disqusLanguage,
         );
         $result = $this->renderPluginTemplate('disqusEmbedTag', $vars);
 
