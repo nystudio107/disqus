@@ -1,40 +1,54 @@
 [
-    {
-        "version": "1.0.3",
-        "downloadUrl": "https://github.com/khalwat/disqus/archive/master.zip",
-        "date": "2016-10-03T11:00:00-05:00",
-        "notes": [
-            "[Fixed] We now JSON-encode the data in the Disqus embed",
-            "[Fixed] Added data-cfasync=false to the script tags for CloudFlare RocketScript support",
-            "[Improved] Updated README.md"
-        ]
-    },
-    {
-        "version": "1.0.2",
-        "downloadUrl": "https://github.com/khalwat/disqus/archive/master.zip",
-        "date": "2016-09-19T11:00:00-05:00",
-        "notes": [
-            "[Improved] We now JSON-encode the data in the Disqus embed",
-            "[Improved] Added data-cfasync=false to the script tags for CloudFlare RocketScript support",
-            "[Improved] Updated README.md"
-        ]
-    },
-    {
-        "version": "1.0.1",
-        "downloadUrl": "https://github.com/khalwat/disqus/archive/master.zip",
-        "date": "2015-11-23T11:00:00-05:00",
-        "notes": [
-            "[Added] Added support for Craft 2.5 new plugin features",
-            "[Added] Added a controller to handle the custom logout URL",
-            "[Fixed] Fixed an issue where custom avatars no longer appeared"
-        ]
-    },
-    {
-        "version": "1.0.0",
-        "downloadUrl": "https://github.com/khalwat/disqus/archive/master.zip",
-        "date": "2015-05-09T11:00:00-05:00",
-        "notes": [
-            "[Added] Initial release"
-        ]
-    }
+  {
+    "version": "1.1.0",
+    "downloadUrl": "https://github.com/khalwat/disqus/archive/master.zip",
+    "date": "2017-03-18T11:00:00-05:00",
+    "notes": [
+      "[Added] All settings can now be overridden via `config.php` in a multi-environment friendly way",
+      "[Added] Added multi-lingual support for both the Disqus embed and comments",
+      "[Added] Added Composer support",
+      "[Added] Broke out the changelog into `CHANGELOG.md`",
+      "[Improved] Separated the various tags out into Twig templates",
+      "[Improved] Cleaned up & refactored the templates & code",
+      "[Improved] Updated `README.md`"
+    ]
+  },
+  {
+    "version": "1.0.3",
+    "downloadUrl": "https://github.com/khalwat/disqus/archive/master.zip",
+    "date": "2016-10-03T11:00:00-05:00",
+    "notes": [
+      "[Fixed] We now JSON-encode the data in the Disqus embed",
+      "[Fixed] Added data-cfasync=false to the script tags for CloudFlare RocketScript support",
+      "[Improved] Updated README.md"
+    ]
+  },
+  {
+    "version": "1.0.2",
+    "downloadUrl": "https://github.com/khalwat/disqus/archive/master.zip",
+    "date": "2016-09-19T11:00:00-05:00",
+    "notes": [
+      "[Improved] We now JSON-encode the data in the Disqus embed",
+      "[Improved] Added data-cfasync=false to the script tags for CloudFlare RocketScript support",
+      "[Improved] Updated README.md"
+    ]
+  },
+  {
+    "version": "1.0.1",
+    "downloadUrl": "https://github.com/khalwat/disqus/archive/master.zip",
+    "date": "2015-11-23T11:00:00-05:00",
+    "notes": [
+      "[Added] Added support for Craft 2.5 new plugin features",
+      "[Added] Added a controller to handle the custom logout URL",
+      "[Fixed] Fixed an issue where custom avatars no longer appeared"
+    ]
+  },
+  {
+    "version": "1.0.0",
+    "downloadUrl": "https://github.com/khalwat/disqus/archive/master.zip",
+    "date": "2015-05-09T11:00:00-05:00",
+    "notes": [
+      "[Added] Initial release"
+    ]
+  }
 ]
