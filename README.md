@@ -40,13 +40,13 @@ You only need this is you want to have a custom login button displayed in the Di
 
 All of these methods accomplish the same thing:
 
-  {# Output the Disqus embed code using the 'disqusEmbed' function #}
+    {# Output the Disqus embed code using the 'disqusEmbed' function #}
     {{ disqusEmbed( DISQUS_IDENTIFIER, DISQUS_TITLE, DISQUS_URL, DISQUS_CATEGORY_ID, DISQUS_LANGUAGE) }}
 
-  {# Output the Disqus embed code using the 'disqusEmbed' filter #}
+    {# Output the Disqus embed code using the 'disqusEmbed' filter #}
     {{ DISQUS_IDENTIFIER | disqusEmbed(DISQUS_TITLE, DISQUS_URL, DISQUS_CATEGORY_ID, DISQUS_LANGUAGE) }}
 
-  {# Output the Disqus embed code using the 'disqusEmbed' variable #}
+    {# Output the Disqus embed code using the 'disqusEmbed' variable #}
     {{ craft.disqus.disqusEmbed( DISQUS_IDENTIFIER, DISQUS_TITLE, DISQUS_URL, DISQUS_CATEGORY_ID, DISQUS_LANGUAGE) }}
 
 All of the parameters except for `DISQUS_IDENTIFIER` are optional.  For more information on what these parameters are, please see [Javascript configuration variables](https://help.disqus.com/customer/portal/articles/472098-javascript-configuration-variables)
