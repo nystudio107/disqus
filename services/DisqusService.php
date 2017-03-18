@@ -10,6 +10,7 @@ class DisqusService extends BaseApplicationComponent
      * @param string $disqusTitle
      * @param string $disqusUrl
      * @param string $disqusCategoryId
+     * @param string $disqusLanguage
      *
      * @return string
      */
@@ -78,7 +79,7 @@ class DisqusService extends BaseApplicationComponent
             'message' => $message,
             'hmac' => $hMac,
             'timestamp' => $timestamp,
-            'disqusPublicKey' => $disqusPublicKey,
+            'disqusPublicKey' => $settings['disqusPublicKey'],
         );
 
         // Render the SSO custom login template
