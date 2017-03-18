@@ -1,19 +1,22 @@
 # Disqus plugin for Craft CMS
 
-A simple plugin for integrating [Disqus](https://disqus.com) into [Craft CMS](http://buildwithcraft.com) websites, including Single Sign On (SSO) and custom login/logout URLs.
+Integrate the [Disqus](https://disqus.com) commenting system into [Craft CMS](http://buildwithcraft.com) websites, including Single Sign On (SSO) and custom login/logout URLs.
 
 **Installation**
 
 1. Download & unzip the file and place the `disqus` directory into your `craft/plugins` directory
 2.  -OR- do a `git clone https://github.com/khalwat/disqus.git` directly into your `craft/plugins` folder.  You can then update it with `git pull`
-3. Install plugin in the Craft Control Panel under Settings > Plugins
-4. The plugin folder should be named `disqus` for Craft to see it.  GitHub recently started appending `-master` (the branch name) to the name of the folder for zip file downloads.
+3.  -OR- install with Composer via `composer require nystudio107/disqus`
+4. Install plugin in the Craft Control Panel under Settings > Plugins
+5. The plugin folder should be named `disqus` for Craft to see it.  GitHub recently started appending `-master` (the branch name) to the name of the folder for zip file downloads.
 
 ## Configuring Disqus
 
 First, make sure you have [set up a Disqus account](https://disqus.com/websites/).
 
 Next in the Craft Admin CP, go to Settings->Plugins->Disqus and enter the Short Name for your Disqus site.  This is the only required setting for the Disqus plugin.
+
+All settings are also configurable via the `config.php` file, which is a multi-environment friendly way to store the default settings.  Don't edit this file, instead copy it to `craft/config` as `disqus.php` and make your changes there.
 
 ### Single Sign On (SSO)
 
@@ -25,7 +28,7 @@ Then copy and paste the API Key and API Secret into the Disqus plugin settings, 
 
 ### Custom Login/Logout URLs
 
-The Diqus plugin will also take care of the custom login/logout URLs, should you wish to use them.  Please see [Adding your own SSO login and logout links](https://help.disqus.com/customer/portal/articles/236206-integrating-single-sign-on#sso-login) for details.
+The Disqus plugin will also take care of the custom login/logout URLs, should you wish to use them.  Please see [Adding your own SSO login and logout links](https://help.disqus.com/customer/portal/articles/236206-integrating-single-sign-on#sso-login) for details.
 
 You only need this is you want to have a custom login button displayed in the Disqus UI itself.  
 
@@ -35,79 +38,92 @@ You only need this is you want to have a custom login button displayed in the Di
 
 ## Using the Disqus plugin in your templates
 
-Both of these methods accomplish the same thing:
+All of these methods accomplish the same thing:
 
-	{# Output the Disqus embed code using the 'disqusEmbed' function #}
-    {{ disqusEmbed( DISQUS_IDENTIFIER, DISQUS_TITLE, DISQUS_URL, DISQUS_CATEGORY_ID) }}
-    
-	{# Output the Disqus embed code using the 'disqusEmbed' filter #}
-    {{ DISQUS_IDENTIFIER | disqusEmbed(DISQUS_TITLE, DISQUS_URL, DISQUS_CATEGORY_ID) }}
+    {# Output the Disqus embed code using the 'disqusEmbed' function #}
+    {{ disqusEmbed( DISQUS_IDENTIFIER, DISQUS_TITLE, DISQUS_URL, DISQUS_CATEGORY_ID, DISQUS_LANGUAGE) }}
+
+    {# Output the Disqus embed code using the 'disqusEmbed' filter #}
+    {{ DISQUS_IDENTIFIER | disqusEmbed(DISQUS_TITLE, DISQUS_URL, DISQUS_CATEGORY_ID, DISQUS_LANGUAGE) }}
+
+    {# Output the Disqus embed code using the 'disqusEmbed' variable #}
+    {{ craft.disqus.disqusEmbed( DISQUS_IDENTIFIER, DISQUS_TITLE, DISQUS_URL, DISQUS_CATEGORY_ID, DISQUS_LANGUAGE) }}
 
 All of the parameters except for `DISQUS_IDENTIFIER` are optional.  For more information on what these parameters are, please see [Javascript configuration variables](https://help.disqus.com/customer/portal/articles/472098-javascript-configuration-variables)
 
+Disqus ignores any settings that are empty strings, e.g.: `''`
+
+The typical Twig tag you'll use would look like this:
+
+    {{ disqusEmbed(entry.slug, entry.title, entry.url) }}
+
+...which will result in comments that are unique on a per-entry basis.
+
 In its most basic case, this will result in output to your Craft template that looks like this:
 
-	<div id="disqus_thread"></div>
-	<script type="text/javascript">
-	    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-	    var disqus_shortname = 'DISQUS_SHORTNAME';
-	    var disqus_identifier = 'DISQUS_IDENTIFIER';
-	    var disqus_title = 'DISQUS_TITLE';
-	    var disqus_url = 'DISQUS_URL';
-	    var disqus_category_id = 'DISQUS_CATEGORY_ID';
-	    
-	    /* * * DON'T EDIT BELOW THIS LINE * * */
-	    (function() {
-	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-	
-	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-	    })();
-	</script>
-	
-	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-	<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    <div id="disqus_thread"></div>
+    <script data-cfasync="false" type="text/javascript">
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+         */
 
-The `DISQUS_SHORTNAME` setting is taken from the Admin CP settings, and the rest of the `DISQUS_*` settings are passed in as variables from the `disqusEmbed` Twig filter/function.
+        if (typeof disqus_config !== 'undefined') {
+            var _old_disqus_config = disqus_config;
+        }
+        var disqus_config = function() {
+            if (typeof _old_disqus_config !== 'undefined') {
+                _old_disqus_config.apply(this);
+            }
+            this.page.url = 'DISQUS_URL';
+            this.page.identifier = 'DISQUS_IDENTIFIER';
+            this.page.title = 'DISQUS_TITLE';
+            this.page.category_id = 'DISQUS_CATEGORY_ID';
+            this.language = 'DISQUS_LANGUAGE';
+        };
+
+        (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+            var d = document, s = d.createElement('script');
+
+            s.src = '//DISQUS_SHORTNAME.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+The `DISQUS_SHORTNAME` setting is taken from the Admin CP or `config.php` settings, and the rest of the `DISQUS_*` settings are passed in as variables from the `disqusEmbed` Twig filter/function.
 
 If you have turned on "User Single Sign On" it will also output something like this prior to the above tag:
 
-	<script type="text/javascript">
-	var disqus_config = function() {
-	    this.page.remote_auth_s3 = "eyJpZCI6IjEiLCJ1c2VybmFtZSI6IkFkbWluIiwiZW1haWwiOiJhbmRyZXdAbWVnYWxvbWFuaWFjLmNvbSJ9 c0e4b8f2eca3c0e995cdd64ba2dedd720820ab5b 1431214361";
-	    this.page.api_key = "GTX1r1JBbiJah3hzZkBO06hI71VxjyWxgdurckHYBWLiELkHDidVmnDkBW0XeROe";
-	};
-	</script>
-	
+    <script data-cfasync="false" type="text/javascript">
+        if (typeof disqus_config !== 'undefined') {
+            var _old_disqus_config = disqus_config;
+        }
+        var disqus_config = function() {
+            if (typeof _old_disqus_config !== 'undefined') {
+                _old_disqus_config.apply(this);
+            }
+            this.page.remote_auth_s3 = "eyJpZCI6IjEiLCJ1c2VybmFtZSI6IkFkbWluIiwiZW1haWwiOiJhbmRyZXdAbWVnYWxvbWFuaWFjLmNvbSJ9 c0e4b8f2eca3c0e995cdd64ba2dedd720820ab5b 1431214361";
+            this.page.api_key = "GTX1r1JBbiJah3hzZkBO06hI71VxjyWxgdurckHYBWLiELkHDidVmnDkBW0XeROe";
+        };
+    </script>
+
 Which, assuming you've set up the Disqus SSO properly, will allow your Craft users to be logged into Disqus using your Craft website credentials.
 
 If you have "Use Custom Login/Logout URLs" turned on, it will also generate the `this.sso` settings for you, [as described here](https://help.disqus.com/customer/portal/articles/236206-integrating-single-sign-on#sso-login)
 
-## Changelog
+## Disqus Multi-lingual websites
 
-### 1.0.4 -- 2016.10.17
+By default, Disqus will use the language you have set in `Disqus Admin > Setup > Appearance`, however you can use it on [Multi-lingual websites](https://help.disqus.com/customer/portal/articles/466249-multi-lingual-websites) as well.
 
-* [Fixed] Fixed some overzealous json_encode() calls that caused comments to not show up correctly
-* [Improved] Updated README.md
+The `DISQUS_LANGUAGE` parameter you can provide to `{{ disqusEmbed() }}` allows you to control the language that the Disqus embed is displayed in. The comments, however, will still be the same for all languages.
 
-### 1.0.3 -- 2016.10.03
+If you wish to have the comments themselves be different per-language, you can do something like:
 
-* [Fixed] Resolve broken $disqusIdentifier encoding when set as a string.
-* [Fixed] Fixes Disqus from loading when encoding the URL
-* [Improved] Updated README.md
+    {{ disqusEmbed(entry.slug ~ "_" ~ entry.locale, entry.title, entry.url, '', entry.locale ) }}
 
-### 1.0.2 -- 2016.09.19
+This will result in comments that are different for each language, and the Disqus embed will be displayed in the same language as the comments.
 
-* [Improved] We now JSON-encode the data in the Disqus embed
-* [Improved] Added data-cfasync=false to the script tags for CloudFlare RocketScript support
-* [Improved] Updated README.md
-
-### 1.0.1 -- 2015.11.23
-
-* Added support for Craft 2.5 new plugin features
-* Added a controller to handle the custom logout URL
-* Fixed an issue where custom avatars no longer appeared
-
-### 1.0.0 -- 2015.05.09
-
-* Initial release
+Brought to you by [nystudio107](http://nystudio107.com)

@@ -1,0 +1,126 @@
+{% import "_includes/forms" as forms %}
+
+{% macro configWarning(setting) -%}
+    {% if (craft.config.get(setting, 'disqus')) |length %}
+        {{ "This is being overridden by the {setting} config setting in your disqus.php config file." |t({
+            setting: setting
+        }) |raw }}
+    {% endif %}
+{%- endmacro %}
+{% from _self import configWarning %}
+
+{{ forms.textField({
+    'label': 'Disqus Site Short Name',
+    'instructions': 'Enter your Disqus Site Short Name here.',
+    'id': 'disqusShortname',
+    'name': 'disqusShortname',
+    'value': settings['disqusShortname'],
+    'warning': configWarning('disqusShortname')
+}) }}
+
+<hr />
+
+<p>Please see <a href="https://help.disqus.com/customer/portal/articles/236206-integrating-single-sign-on" target="_blank">Integrating Single Sign-On</a> for details on how to set up your Disqus account to use SSO</p>
+
+{{ forms.lightswitchField({
+    'label': 'Use Single Sign On',
+    'instructions': 'Do you want to use SSO with Disqus?',
+    'id': 'useSSO',
+    'name': 'useSSO',
+    'on': settings['useSSO'],
+    'warning': configWarning('useSSO')
+}) }}
+
+{{ forms.textField({
+    'label': 'Disqus Public Key (API Key)',
+    'instructions': 'Enter your Disqus API Key.',
+    'id': 'disqusPublicKey',
+    'name': 'disqusPublicKey',
+    'value': settings['disqusPublicKey'],
+    'warning': configWarning('disqusPublicKey')
+}) }}
+
+{{ forms.textField({
+    'label': 'Disqus Secret Key (API Secret)',
+    'instructions': 'Enter your .',
+    'id': 'disqusSecretKey',
+    'name': 'disqusSecretKey',
+    'value': settings['disqusSecretKey'],
+    'warning': configWarning('disqusSecretKey')
+}) }}
+
+<hr />
+
+<p>Please see <a href="https://help.disqus.com/customer/portal/articles/236206-integrating-single-sign-on#sso-login" target="_blank">Adding your own SSO login and logout links</a> for details.</p>
+
+{{ forms.lightswitchField({
+    'label': 'Use Custom Login/Logout URLs',
+    'instructions': 'Do you want to use custom login/logout URLs?',
+    'id': 'customLogin',
+    'name': 'customLogin',
+    'on': settings['customLogin'],
+    'warning': configWarning('customLogin')
+}) }}
+
+{{ forms.textField({
+    'label': 'name',
+    'instructions': 'Your site name. We will display it in the Post As window.',
+    'id': 'loginName',
+    'name': 'loginName',
+    'value': settings['loginName'],
+    'warning': configWarning('loginName')
+}) }}
+
+{{ forms.textField({
+    'label': 'button',
+    'instructions': 'Address of the image that acts as a button. Disqus 2012 users, see style guide below.',
+    'id': 'loginButton',
+    'name': 'loginButton',
+    'value': settings['loginButton'],
+    'warning': configWarning('loginButton')
+}) }}
+
+{{ forms.textField({
+    'label': 'icon',
+    'instructions': 'Address of the image that appears on the login modal SSO tab. Favicons work well here. (Not required in Disqus 2012.)',
+    'id': 'loginIcon',
+    'name': 'loginIcon',
+    'value': settings['loginIcon'],
+    'warning': configWarning('loginIcon')
+}) }}
+
+{{ forms.textField({
+    'label': 'url',
+    'instructions': 'Address of your login page. The page will be opened in a new window and it must close itself after authentication is done. That is how we know when it is done and reload the page.',
+    'id': 'loginUrl',
+    'name': 'loginUrl',
+    'value': settings['loginUrl'],
+    'warning': configWarning('loginUrl')
+}) }}
+
+{{ forms.textField({
+    'label': 'logout',
+    'instructions': 'Address of your logout page. This page must redirect user back to the original page after logout.',
+    'id': 'loginLogoutUrl',
+    'name': 'loginLogoutUrl',
+    'value': settings['loginLogoutUrl'],
+    'warning': configWarning('loginLogoutUrl')
+}) }}
+
+{{ forms.textField({
+    'label': 'width',
+    'instructions': 'Width of the login popup window. Default is 800.',
+    'id': 'loginWidth',
+    'name': 'loginWidth',
+    'value': settings['loginWidth'],
+    'warning': configWarning('loginWidth')
+}) }}
+
+{{ forms.textField({
+    'label': 'height',
+    'instructions': 'Height of the login popup window. Default is 400.',
+    'id': 'loginHeight',
+    'name': 'loginHeight',
+    'value': settings['loginHeight'],
+    'warning': configWarning('loginHeight')
+}) }}
