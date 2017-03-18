@@ -10,6 +10,7 @@
  * make your changes there.
  */
 
+// Leave any value in the array blank to cause it to not override.
 return array(
     'disqusShortname' => '',
     'useSSO' => false,
