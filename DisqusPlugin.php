@@ -64,62 +64,62 @@ class DisqusPlugin extends BasePlugin
             'disqusShortname' => array(
                 AttributeType::String,
                 'label' => 'Disqus Site Short Name',
-                'default' => craft()->config->get('disqusShortname', 'disqus')
+                'default' => ''
             ),
             'useSSO' => array(
                 AttributeType::Bool,
                 'label' => 'Use Single Sign On',
-                'default' => craft()->config->get('useSSO', 'disqus')
+                'default' => false
             ),
             'disqusPublicKey' => array(
                 AttributeType::String,
                 'label' => 'Disqus Public Key',
-                'default' => craft()->config->get('disqusPublicKey', 'disqus')
+                'default' => ''
             ),
             'disqusSecretKey' => array(
                 AttributeType::String,
                 'label' => 'Disqus Secret Key',
-                'default' => craft()->config->get('disqusSecretKey', 'disqus')
+                'default' => ''
             ),
             'customLogin' => array(
                 AttributeType::Bool,
                 'label' => 'Use Custom Login/Logout URLs',
-                'default' => craft()->config->get('customLogin', 'disqus')
+                'default' => false
             ),
             'loginName' => array(
                 AttributeType::String,
                 'label' => 'name',
-                'default' => craft()->config->get('loginName', 'disqus')
+                'default' => ''
             ),
             'loginButton' => array(
                 AttributeType::String,
                 'label' => 'button',
-                'default' => craft()->config->get('loginButton', 'disqus')
+                'default' => ''
             ),
             'loginIcon' => array(
                 AttributeType::String,
                 'label' => 'icon',
-                'default' => craft()->config->get('loginIcon', 'disqus')
+                'default' => ''
             ),
             'loginUrl' => array(
                 AttributeType::String,
                 'label' => 'url',
-                'default' => craft()->config->get('loginUrl', 'disqus')
+                'default' => ''
             ),
             'loginLogoutUrl' => array(
                 AttributeType::String,
                 'label' => 'logout',
-                'default' => craft()->config->get('loginLogoutUrl', 'disqus')
+                'default' => ''
             ),
             'loginWidth' => array(
                 AttributeType::String,
                 'label' => 'width',
-                'default' => craft()->config->get('loginWidth', 'disqus')
+                'default' => '800'
             ),
             'loginHeight' => array(
                 AttributeType::String,
                 'label' => 'height',
-                'default' => craft()->config->get('loginHeight', 'disqus')
+                'default' => '400'
             ),
         );
     }
@@ -130,7 +130,6 @@ class DisqusPlugin extends BasePlugin
     public function getSettings()
     {
         $settings = parent::getSettings();
-        /*
         $base = $this->defineSettings();
 
         foreach ($base as $key => $row) {
@@ -140,7 +139,7 @@ class DisqusPlugin extends BasePlugin
                 $settings->$key = $override;
             }
         }
-*/
+
         return $settings;
     }
 

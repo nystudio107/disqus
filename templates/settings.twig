@@ -27,7 +27,8 @@
     'instructions': 'Do you want to use SSO with Disqus?',
     'id': 'useSSO',
     'name': 'useSSO',
-    'on': settings['useSSO']
+    'on': settings['useSSO'],
+    'warning': configWarning('useSSO')
 }) }}
 
 {{ forms.textField({
@@ -35,7 +36,8 @@
     'instructions': 'Enter your Disqus API Key.',
     'id': 'disqusPublicKey',
     'name': 'disqusPublicKey',
-    'value': settings['disqusPublicKey']
+    'value': settings['disqusPublicKey'],
+    'warning': configWarning('disqusPublicKey')
 }) }}
 
 {{ forms.textField({
@@ -43,7 +45,8 @@
     'instructions': 'Enter your .',
     'id': 'disqusSecretKey',
     'name': 'disqusSecretKey',
-    'value': settings['disqusSecretKey']
+    'value': settings['disqusSecretKey'],
+    'warning': configWarning('disqusSecretKey')
 }) }}
 
 <hr />
@@ -55,7 +58,8 @@
     'instructions': 'Do you want to use custom login/logout URLs?',
     'id': 'customLogin',
     'name': 'customLogin',
-    'on': settings['customLogin']
+    'on': settings['customLogin'],
+    'warning': configWarning('customLogin')
 }) }}
 
 {{ forms.textField({
@@ -63,7 +67,8 @@
     'instructions': 'Your site name. We will display it in the Post As window.',
     'id': 'loginName',
     'name': 'loginName',
-    'value': settings['loginName']
+    'value': settings['loginName'],
+    'warning': configWarning('loginName')
 }) }}
 
 {{ forms.textField({
@@ -71,7 +76,8 @@
     'instructions': 'Address of the image that acts as a button. Disqus 2012 users, see style guide below.',
     'id': 'loginButton',
     'name': 'loginButton',
-    'value': settings['loginButton']
+    'value': settings['loginButton'],
+    'warning': configWarning('loginButton')
 }) }}
 
 {{ forms.textField({
@@ -79,7 +85,8 @@
     'instructions': 'Address of the image that appears on the login modal SSO tab. Favicons work well here. (Not required in Disqus 2012.)',
     'id': 'loginIcon',
     'name': 'loginIcon',
-    'value': settings['loginIcon']
+    'value': settings['loginIcon'],
+    'warning': configWarning('loginIcon')
 }) }}
 
 {{ forms.textField({
@@ -87,14 +94,17 @@
     'instructions': 'Address of your login page. The page will be opened in a new window and it must close itself after authentication is done. That is how we know when it is done and reload the page.',
     'id': 'loginUrl',
     'name': 'loginUrl',
-    'value': settings['loginUrl']
+    'value': settings['loginUrl'],
+    'warning': configWarning('loginUrl')
 }) }}
 
 {{ forms.textField({
     'label': 'logout',
     'instructions': 'Address of your logout page. This page must redirect user back to the original page after logout.',
     'id': 'loginLogoutUrl',
-    'name': 'loginLogoutUrl', 'value': settings['loginLogoutUrl']
+    'name': 'loginLogoutUrl',
+    'value': settings['loginLogoutUrl'],
+    'warning': configWarning('loginLogoutUrl')
 }) }}
 
 {{ forms.textField({
@@ -102,7 +112,8 @@
     'instructions': 'Width of the login popup window. Default is 800.',
     'id': 'loginWidth',
     'name': 'loginWidth',
-    'value': settings['loginWidth']
+    'value': settings['loginWidth'],
+    'warning': configWarning('loginWidth')
 }) }}
 
 {{ forms.textField({
@@ -110,5 +121,6 @@
     'instructions': 'Height of the login popup window. Default is 400.',
     'id': 'loginHeight',
     'name': 'loginHeight',
-    'value': settings['loginHeight']
+    'value': settings['loginHeight'],
+    'warning': configWarning('loginHeight')
 }) }}

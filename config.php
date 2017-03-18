@@ -21,6 +21,6 @@ return array(
     'loginIcon' => '',
     'loginUrl' => '',
     'loginLogoutUrl' => '',
-    'loginWidth' => '800',
-    'loginHeight' => '400',
+    'loginWidth' => '',
+    'loginHeight' => '',
 );
