@@ -3,70 +3,51 @@ namespace Craft;
 
 use Twig_Extension;
 use Twig_Filter_Method;
-use Twig_Function_Method;
 
-class DisqusTwigExtension extends Twig_Extension
+class DisqusTwigExtension extends \Twig_Extension
 {
 
-    /**
-     * @inheritdoc
-     */
+/* --------------------------------------------------------------------------------
+	Expose our filters and functions
+-------------------------------------------------------------------------------- */
+
     public function getName()
     {
         return 'Disqus';
     }
 
-    /**
-     * @inheritdoc
-     */
+/* -- Return our twig filters */
+
     public function getFilters()
     {
         return array(
-            'disqusSSO' => new Twig_Filter_Method($this, 'disqusSSO'),
-            'disqusEmbed' => new Twig_Filter_Method($this, 'disqusEmbed'),
+            'disqusSSO' => new \Twig_Filter_Method($this, 'disqusSSO_filter'),
+            'disqusEmbed' => new \Twig_Filter_Method($this, 'disqusEmbed_filter'),
         );
-    }
+    } /* -- getFilters */
 
-    /**
-     * @inheritdoc
-     */
+/* -- Return our twig functions */
+
     public function getFunctions()
     {
         return array(
-            'disqusSSO' => new Twig_Function_Method($this, 'disqusSSO'),
-            'disqusEmbed' => new Twig_Function_Method($this, 'disqusEmbed'),
+            'disqusSSO' => new \Twig_Function_Method($this, 'disqusSSO_filter'),
+            'disqusEmbed' => new \Twig_Function_Method($this, 'disqusEmbed_filter'),
         );
-    }
+    } /* -- getFunctions */
 
-    /**
-     * @return mixed
-     */
-    public function disqusSSO()
+/* --------------------------------------------------------------------------------
+	Filters
+-------------------------------------------------------------------------------- */
+
+    function disqusSSO_filter($userId = 0)
     {
-        return craft()->disqus->outputSSOTag();
-    }
+		return craft()->disqus_utils->outputSSOTag($userId);
+    } /* -- disqusSSO_filter */
 
-    /**
-     * @param string $disqusIdentifier
-     * @param string $disqusTitle
-     * @param string $disqusUrl
-     * @param string $disqusCategoryId
-     *
-     * @return mixed
-     */
-    public function disqusEmbed(
-        $disqusIdentifier = "",
-        $disqusTitle = "",
-        $disqusUrl = "",
-        $disqusCategoryId = "",
-        $disqusLanguage = ""
-    ) {
-        return craft()->disqus->outputEmbedTag(
-            $disqusIdentifier,
-            $disqusTitle,
-            $disqusUrl,
-            $disqusCategoryId,
-            $disqusLanguage
-        );
-    }
-}
+    function disqusEmbed_filter($disqusIdentifier = "", $disqusTitle = "", $disqusUrl = "", $disqusCategoryId = "")
+    {
+		return craft()->disqus_utils->outputEmbedTag($disqusIdentifier, $disqusTitle, $disqusUrl, $disqusCategoryId);
+    } /* -- disqusEmbed_filter */
+
+} /* -- DisqusTwigExtension */
