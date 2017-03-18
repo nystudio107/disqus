@@ -2,6 +2,8 @@
 
 Integrate the [Disqus](https://disqus.com) commenting system into [Craft CMS](http://buildwithcraft.com) websites, including Single Sign On (SSO) and custom login/logout URLs.
 
+Related: [Disqus for Craft 3.x](https://github.com/nystudio107/craft3-disqus)
+
 **Installation**
 
 1. Download & unzip the file and place the `disqus` directory into your `craft/plugins` directory
