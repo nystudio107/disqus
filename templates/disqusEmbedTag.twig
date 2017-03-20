@@ -14,7 +14,7 @@
         }
         this.page.url = '{{ disqusUrl }}';
         this.page.identifier = '{{ disqusIdentifier }}';
-        this.page.title = '{{ disqusTitle |escape('js') }}';
+        this.page.title = '{{ disqusTitle }}';
         this.page.category_id = '{{ disqusCategoryId }}';
         this.language = '{{ disqusLanguage }}';
         {% if useSSO -%}
