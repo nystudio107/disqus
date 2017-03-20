@@ -24,10 +24,6 @@ class DisqusService extends BaseApplicationComponent
         $settings = craft()->plugins->getPlugin('disqus')->getSettings();
         $disqusShortname = $settings['disqusShortname'];
 
-        if ($settings['useSSO']) {
-            $this->outputSSOTag();
-        }
-
         $vars = array(
             'disqusShortname' => $disqusShortname,
             'disqusIdentifier' => $disqusIdentifier,
@@ -36,70 +32,75 @@ class DisqusService extends BaseApplicationComponent
             'disqusCategoryId' => $disqusCategoryId,
             'disqusLanguage' => $disqusLanguage,
         );
+        $vars = array_merge($vars, $this->getSSOVars());
         $result = $this->renderPluginTemplate('disqusEmbedTag', $vars);
 
         return $result;
     }
 
     /**
-     * Output the Disqus SSO Tag
+     * Return the SSO vars
      *
-     * @return string
+     * @return array
      */
-    public function outputSSOTag()
+    protected function getSSOVars()
     {
         $settings = craft()->plugins->getPlugin('disqus')->getSettings();
-        $data = array();
-
-        // Set the data array
-        $currentUser = craft()->userSession->user;
-        if ($currentUser) {
-            $data['id'] = $currentUser->id;
-            if (craft()->config->get('useEmailAsUsername')) {
-                $data['username'] = $currentUser->getFullName();
-            } else {
-                $data['username'] = $currentUser->username;
-            }
-            $data['email'] = $currentUser->email;
-            $data['avatar'] = $currentUser->getPhotoUrl();
-        }
-
-        // Encode the data array and generate the hMac
-        $message = base64_encode(json_encode($data));
-        $timestamp = time();
-        $hMac = $this->disqusHmacSha1(
-            $message
-            . ' '
-            . $timestamp,
-            $settings['disqusSecretKey']
-        );
-
-        // Set the vars for the template
         $vars = array(
-            'message' => $message,
-            'hmac' => $hMac,
-            'timestamp' => $timestamp,
-            'disqusPublicKey' => $settings['disqusPublicKey'],
+            'useSSO' => false,
+            'useCustomLogin' => false,
         );
+        if ($settings['useSSO']) {
+            $data = array();
 
-        // Render the SSO custom login template
-        if ($settings['customLogin']) {
+            // Set the data array
+            $currentUser = craft()->userSession->user;
+            if ($currentUser) {
+                $data['id'] = $currentUser->id;
+                if (craft()->config->get('useEmailAsUsername')) {
+                    $data['username'] = $currentUser->getFullName();
+                } else {
+                    $data['username'] = $currentUser->username;
+                }
+                $data['email'] = $currentUser->email;
+                $data['avatar'] = $currentUser->getPhotoUrl();
+            }
+
+            // Encode the data array and generate the hMac
+            $message = base64_encode(json_encode($data));
+            $timestamp = time();
+            $hMac = $this->disqusHmacSha1(
+                $message
+                .' '
+                .$timestamp,
+                $settings['disqusSecretKey']
+            );
+
+            // Set the vars for the template
             $vars = array_merge($vars, array(
-                'loginName' => $settings['loginName'],
-                'loginButton' => $settings['loginButton'],
-                'loginIcon' => $settings['loginIcon'],
-                'loginUrl' => $settings['loginUrl'],
-                'loginLogoutUrl' => $settings['loginLogoutUrl'],
-                'loginWidth' => $settings['loginWidth'],
-                'loginHeight' => $settings['loginHeight'],
-            ));
-            $result = $this->renderPluginTemplate('disqusSsoCustomLogin', $vars);
-        } else {
-            // Render the SSO template
-            $result = $this->renderPluginTemplate('disqusSso', $vars);
+                'useSSO' => true,
+                'message' => $message,
+                'hmac' => $hMac,
+                'timestamp' => $timestamp,
+                'disqusPublicKey' => $settings['disqusPublicKey'],
+                ));
+
+            // Render the SSO custom login template
+            if ($settings['customLogin']) {
+                $vars = array_merge($vars, array(
+                    'useCustomLogin' => true,
+                    'loginName' => $settings['loginName'],
+                    'loginButton' => $settings['loginButton'],
+                    'loginIcon' => $settings['loginIcon'],
+                    'loginUrl' => $settings['loginUrl'],
+                    'loginLogoutUrl' => $settings['loginLogoutUrl'],
+                    'loginWidth' => $settings['loginWidth'],
+                    'loginHeight' => $settings['loginHeight'],
+                    ));
+            }
         }
 
-        return $result;
+        return $vars;
     }
 
     /**

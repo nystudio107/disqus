@@ -17,6 +17,22 @@
         this.page.title = '{{ disqusTitle |escape('js') }}';
         this.page.category_id = '{{ disqusCategoryId |escape('js') }}';
         this.language = '{{ disqusLanguage |escape('js') }}';
+        {% if useSSO -%}
+        this.page.remote_auth_s3 = '{{ message |escape('js') }} {{ hmac |escape('js') }} {{ timestamp |escape('js') }}';
+        this.page.api_key = '{{ disqusPublicKey |escape('js') }}';
+        {% if useCustomLogin -%}
+        this.sso = {
+            name:   "{{ loginName |escape('js') }}",
+            button: "{{ loginButton |escape('js') }}",
+            icon:   "{{ loginIcon |escape('js') }}",
+            url:    "{{ loginUrl |escape('js') }}",
+            logout: "{{ loginLogoutUrl |escape('js') }}",
+            width:  "{{ loginWidth |escape('js') }}",
+            height: "{{ loginHeight |escape('js') }}"
+        };
+        {% endif -%}
+        {% endif -%}
+
     };
 
     (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW

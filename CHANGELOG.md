@@ -1,5 +1,12 @@
 # Disqus Changelog
 
+## 1.1.1 - 2017.03.20
+### Changed
+* Fixed broken SSO implementation by moving it all to one template
+* Changed `[]` to `array()` for ancient PHP compatibility
+* Deprecated the separate `outputSSOTag()` functions
+* Updated `README.md`
+
 ## 1.1.0 - 2017.03.18
 ### Added
 * All settings can now be overridden via `config.php` in a multi-environment friendly way

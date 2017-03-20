@@ -3,15 +3,6 @@ namespace Craft;
 
 class DisqusVariable
 {
-
-    /**
-     * @return mixed
-     */
-    public function disqusSSO()
-    {
-        return craft()->disqus->outputSSOTag();
-    }
-
     /**
      * @param string $disqusIdentifier
      * @param string $disqusTitle

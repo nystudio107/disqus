@@ -22,7 +22,6 @@ class DisqusTwigExtension extends Twig_Extension
     public function getFilters()
     {
         return array(
-            'disqusSSO' => new Twig_Filter_Method($this, 'disqusSSO'),
             'disqusEmbed' => new Twig_Filter_Method($this, 'disqusEmbed'),
         );
     }
@@ -33,17 +32,8 @@ class DisqusTwigExtension extends Twig_Extension
     public function getFunctions()
     {
         return array(
-            'disqusSSO' => new Twig_Function_Method($this, 'disqusSSO'),
             'disqusEmbed' => new Twig_Function_Method($this, 'disqusEmbed'),
         );
-    }
-
-    /**
-     * @return mixed
-     */
-    public function disqusSSO()
-    {
-        return craft()->disqus->outputSSOTag();
     }
 
     /**
