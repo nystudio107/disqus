@@ -5,6 +5,7 @@
 * Fixed broken SSO implementation by moving it all to one template
 * Changed `[]` to `array()` for ancient PHP compatibility
 * Deprecated the separate `outputSSOTag()` functions
+* Removed errant (and unneeded) `|escape('js)` filters
 * Updated `README.md`
 
 ## 1.1.0 - 2017.03.18

@@ -12,23 +12,23 @@
         if (typeof _old_disqus_config !== 'undefined') {
             _old_disqus_config.apply(this);
         }
-        this.page.url = '{{ disqusUrl |escape('js') }}';
-        this.page.identifier = '{{ disqusIdentifier |escape('js') }}';
-        this.page.title = '{{ disqusTitle |escape('js') }}';
-        this.page.category_id = '{{ disqusCategoryId |escape('js') }}';
-        this.language = '{{ disqusLanguage |escape('js') }}';
+        this.page.url = '{{ disqusUrl }}';
+        this.page.identifier = '{{ disqusIdentifier }}';
+        this.page.title = '{{ disqusTitle }}';
+        this.page.category_id = '{{ disqusCategoryId }}';
+        this.language = '{{ disqusLanguage }}';
         {% if useSSO -%}
-        this.page.remote_auth_s3 = '{{ message |escape('js') }} {{ hmac |escape('js') }} {{ timestamp |escape('js') }}';
-        this.page.api_key = '{{ disqusPublicKey |escape('js') }}';
+        this.page.remote_auth_s3 = '{{ message }} {{ hmac }} {{ timestamp }}';
+        this.page.api_key = '{{ disqusPublicKey }}';
         {% if useCustomLogin -%}
         this.sso = {
-            name:   "{{ loginName |escape('js') }}",
-            button: "{{ loginButton |escape('js') }}",
-            icon:   "{{ loginIcon |escape('js') }}",
-            url:    "{{ loginUrl |escape('js') }}",
-            logout: "{{ loginLogoutUrl |escape('js') }}",
-            width:  "{{ loginWidth |escape('js') }}",
-            height: "{{ loginHeight |escape('js') }}"
+            name:   "{{ loginName }}",
+            button: "{{ loginButton }}",
+            icon:   "{{ loginIcon }}",
+            url:    "{{ loginUrl }}",
+            logout: "{{ loginLogoutUrl }}",
+            width:  "{{ loginWidth }}",
+            height: "{{ loginHeight }}"
         };
         {% endif -%}
         {% endif -%}
@@ -38,7 +38,7 @@
     (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
         var d = document, s = d.createElement('script');
 
-        s.src = '//{{ disqusShortname |escape('js') }}.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
+        s.src = '//{{ disqusShortname }}.disqus.com/embed.js';  // IMPORTANT: Replace EXAMPLE with your forum shortname!
 
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
