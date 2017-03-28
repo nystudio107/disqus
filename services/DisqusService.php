@@ -66,6 +66,9 @@ class DisqusService extends BaseApplicationComponent
                 $data['avatar'] = $currentUser->getPhotoUrl();
             }
 
+            // Allow plugins to change $data
+            $data = craft()->plugins->call('disqusTransformSsoData', array($data));
+
             // Encode the data array and generate the hMac
             $message = base64_encode(json_encode($data));
             $timestamp = time();
